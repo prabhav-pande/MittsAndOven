@@ -1,9 +1,12 @@
-import S3UploadForm from "@/app/components/S3UploadForm"
+'use client'
+import { HeaderSimple } from "./components/Header";
 
 export default function Home() {
   return (
     <div>
-      <S3UploadForm/>
+      <HeaderSimple>
+
+      </HeaderSimple>
     </div>
   );
 }
