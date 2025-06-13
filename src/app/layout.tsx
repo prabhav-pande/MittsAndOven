@@ -1,12 +1,10 @@
+'use client'
 import "./globals.css";
 import '@mantine/core/styles.css';
+import { HeaderSimple } from "./components/Header";
 
 import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/core';
 
-export const metadata = {
-  title: 'My Mantine app',
-  description: 'I have followed setup instructions carefully',
-};
 
 export default function RootLayout({
   children,
@@ -19,7 +17,11 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider>{children}</MantineProvider>
+        <MantineProvider>
+          <HeaderSimple>
+          </HeaderSimple>
+          {children}
+        </MantineProvider>
       </body>
     </html>
   );

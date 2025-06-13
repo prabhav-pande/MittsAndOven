@@ -1,28 +1,34 @@
 import { useState } from 'react';
-
+import { useRouter } from 'next/navigation';
 const links = [
-  { link: '/about', label: 'Home' },
-  { link: '/pricing', label: 'Cakes' },
-  { link: '/learn', label: 'Inquiry' },
-  { link: '/community', label: 'About Me' },
+  { link: '/', label: 'Home' },
+  { link: '/cakes', label: 'Cakes' },
+  { link: '/inquiry', label: 'Inquiry' },
+  { link: '/aboutme', label: 'About Me' },
 ];
 
 export function OvenKnobNav() {
+  const router = useRouter();
   const [rotation, setRotation] = useState(0);  // total degrees rotated
   const [activeIndex, setActiveIndex] = useState(0);
   const angleStep = 360 / links.length;
 
-    const handleClick = (index: number) => {
+  const handleClick = (index: number) => {
     const diffIndex = index - activeIndex;
     const normalizedDiff =
         ((diffIndex + links.length / 2) % links.length) - links.length / 2;
 
     const deltaDegrees = normalizedDiff * angleStep;
-
-    setRotation((prev) => prev + deltaDegrees);
+    console.log(diffIndex, index, normalizedDiff, deltaDegrees, angleStep)
+    if (index == 0 && activeIndex == 3) {
+      setRotation((prev) => prev + 90);  
+    } else {
+      setRotation((prev) => prev + deltaDegrees);
+    }
     setActiveIndex(index);
-    };
-
+    router.push(links[index].link)
+    
+  };
 
   return (
     <div className="relative mx-5" style={{ width: 240, height: 240 }}>
